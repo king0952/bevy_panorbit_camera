@@ -25,8 +25,14 @@ pub struct EguiWantsFocus {
 /// is over an egui area, even if you're in the middle of dragging to rotate, so only use
 /// this if you use egui Panels (as opposed to Windows). If you use Windows exclusively
 /// then no workaround is required.
-#[derive(Resource, PartialEq, Eq, Default)]
+#[derive(Resource, PartialEq, Eq)]
 pub struct EguiFocusIncludesHover(pub bool);
+
+impl Default for EguiFocusIncludesHover {
+    fn default() -> Self {
+        Self(true)
+    }
+}
 
 pub fn check_egui_wants_focus(
     mut contexts: bevy_egui::EguiContexts,
